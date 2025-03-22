@@ -110,11 +110,9 @@ export function BlendPage({ userAccount }: { userAccount: string | null }) {
       const response = await blendService.createAgents(account, simplePrompt);
       console.log("Blend Service Response:", response);
       
-      const newAgents = response.agents || [];
-      setCreatedAgents(newAgents);
-      setAgents(agents.concat(newAgents));
+      // After creating agents, fetch updated agent list to get all details
+      await fetchAgents();
       
-      console.log("Created Agents:", newAgents);
       console.log("===== WEB3 AGENTS CREATED SUCCESSFULLY =====");
     } catch (error: any) {
       console.error("===== ERROR CREATING WEB3 AGENTS =====");
@@ -139,30 +137,37 @@ export function BlendPage({ userAccount }: { userAccount: string | null }) {
     setIsRunningAgent(true);
     setRunError(null);
     
+    // Get the actual agent data
+    const selectedAgent = agents[index];
+    
+    if (!selectedAgent) {
+      setRunError("Agent not found");
+      setIsRunningAgent(false);
+      return;
+    }
+    
     console.log("===== RUNNING WEB3 AGENT =====");
     console.log("User Wallet:", account);
     console.log("Selected Agent Index:", index);
-    console.log("Selected Agent:", agents[index]);
+    console.log("Selected Agent:", selectedAgent);
     console.log("Prompt:", runPrompt);
-    console.log("Wallet ID:", account);
+    console.log("Agent Wallet ID:", selectedAgent.wallet_id);
+    console.log("Agent Functions:", selectedAgent.functions);
     
     try {
-      const selectedAgent = agents[index];
-      const functions = ["get_historical_price", "get_token_info"];
-      
       console.log("Calling blend.runAgent with:");
       console.log("- userId:", account);
       console.log("- agentIndex:", index);
       console.log("- prompt:", runPrompt);
-      console.log("- walletId:", account);
-      console.log("- functions:", functions);
+      console.log("- walletId:", selectedAgent.wallet_id);
+      console.log("- functions:", selectedAgent.functions);
       
       const response = await blendService.runAgent(
         account,
         index,
         runPrompt,
-        account,
-        functions
+        selectedAgent.wallet_id,
+        selectedAgent.functions
       );
       
       console.log("Agent Run Response:", response);
@@ -187,21 +192,6 @@ export function BlendPage({ userAccount }: { userAccount: string | null }) {
   const handleAgentSelection = (index: number, agent: BlendAgent) => {
     console.log("Selected agent at index:", index, agent);
     setSelectedAgentIndex(index);
-    setSelectedAgentFunctions(agent.functions || []);
-    setSelectedAgentWalletId(agent.wallet_id || "");
-    
-    // Check if we have a matching agent with an NFT hash
-    if (agent.wallet_id && agents.length > 0) {
-      const matchingAgent = agents.find(a => a.wallet_id === agent.wallet_id);
-      if (matchingAgent) {
-        console.log("Found matching agent with NFT hash:", matchingAgent.nft_hash);
-        setSelectedAgentNftHash(matchingAgent.nft_hash || "");
-      } else {
-        setSelectedAgentNftHash("");
-      }
-    } else {
-      setSelectedAgentNftHash("");
-    }
   };
 
   // Connect wallet function
@@ -448,20 +438,17 @@ export function BlendPage({ userAccount }: { userAccount: string | null }) {
                             value={selectedAgentIndex !== null ? selectedAgentIndex : ""}
                             onChange={(e) => {
                               const index = parseInt(e.target.value);
-                              if (!isNaN(index) && createdAgents[index]) {
-                                handleAgentSelection(index, createdAgents[index]);
+                              if (!isNaN(index) && agents[index]) {
+                                handleAgentSelection(index, agents[index]);
                               } else {
                                 setSelectedAgentIndex(null);
-                                setSelectedAgentFunctions([]);
-                                setSelectedAgentWalletId("");
-                                setSelectedAgentNftHash("");
                               }
                             }}
                             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400"
-                            disabled={createdAgents.length === 0}
+                            disabled={agents.length === 0}
                           >
                             <option value="">-- Select an Agent --</option>
-                            {createdAgents.map((agent, index) => (
+                            {agents.map((agent, index) => (
                               <option key={index} value={index}>
                                 {agent.name || `Agent #${index + 1}`}
                               </option>
@@ -531,18 +518,18 @@ export function BlendPage({ userAccount }: { userAccount: string | null }) {
                 </motion.div>
                 
                 {/* Agent Display Section */}
-                {createdAgents.length > 0 && (
+                {agents.length > 0 && (
                   <Card className="shadow-sm border border-gray-200 hover:border-gray-300 transition-all mt-8">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-lg text-black">Your Web3 Agents</CardTitle>
                       <CardDescription className="text-sm text-gray-600">
-                        {createdAgents.length} agent{createdAgents.length !== 1 ? "s" : ""} generated for your project
+                        {agents.length} agent{agents.length !== 1 ? "s" : ""} generated for your project
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <ScrollArea className="h-64 w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {createdAgents.map((agent, index) => (
+                          {agents.map((agent, index) => (
                             <motion.div
                               key={index}
                               className={`overflow-hidden border-2 ${
@@ -561,6 +548,10 @@ export function BlendPage({ userAccount }: { userAccount: string | null }) {
                                     <Box className="mr-2" size={16} />
                                     {agent.name || `Agent #${index + 1}`}
                                   </h3>
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  <p>Wallet ID: {agent.wallet_id}</p>
+                                  <p>Functions: {agent.functions.join(", ")}</p>
                                 </div>
                               </div>
                             </motion.div>

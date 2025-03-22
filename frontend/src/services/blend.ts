@@ -9,6 +9,7 @@ export interface Agent {
   wallet_address: string;
   wallet_id: string;
   user_id: string;
+  nft_hash?: string;
 }
 
 export interface CreateAgentsResponse {
@@ -130,12 +131,29 @@ const runAgent = async (
  */
 const getAgents = async (userId: string): Promise<GetAgentsResponse> => {
     try {
+        console.log("===== BLEND SERVICE GET AGENTS =====");
         console.log("Fetching agents for user:", userId);
+        console.log("API URL:", `${API_URL}/web3_manager/${userId}/agents`);
+        
         const response = await axios.get(`${API_URL}/web3_manager/${userId}/agents`);
-        console.log("Get agents response:", response.data);
-        return response.data as GetAgentsResponse;
-    } catch (error) {
+        
+        console.log("Response status:", response.status);
+        console.log("Get agents response data:", response.data);
+        console.log("===== END BLEND SERVICE GET AGENTS =====");
+        
+        return {
+            agents: response.data as Agent[]
+        };
+    } catch (error: any) {
+        console.error("===== BLEND SERVICE GET AGENTS ERROR =====");
         console.error("Error getting agents:", error);
+        console.error("Error message:", error.message);
+        if (error.response) {
+            console.error("Response data:", error.response.data);
+            console.error("Response status:", error.response.status);
+            console.error("Request config:", error.config);
+        }
+        console.error("===== END BLEND SERVICE GET AGENTS ERROR =====");
         throw error;
     }
 };
