@@ -405,7 +405,7 @@ def load_agent(NFT_id, prompt):
         
         try:
             based_agent = Agent(
-                model=OpenAILike(id="llama3.1:70b",api_key=os.getenv("GALADRIAL_API_KEY"),base_url="https://api.galadriel.com/v1"),
+                model=Gemini(model='gemini-2.0-flash-exp', api_key=os.getenv("GEMINI_API_KEY")),
                 tools=[get_balance, transfer_asset, ExaTools(api_key=os.getenv("EXA_API_KEY"))]+ToolKit,
                 description=data["Personality"]+f"You have very in depth knowledge in the fields of {data['Concepts']}",
                 instructions=[

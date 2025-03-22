@@ -26,7 +26,7 @@ class ChatbotAnalyzer:
         }
         
         self.Analayser = Agent(
-            model=OpenAILike(id="llama3.1:405b",api_key=os.getenv("GALADRIAL_API_KEY"),base_url="https://api.galadriel.com/v1"),
+            model=Gemini(model='gemini-2.0-flash-exp', api_key=os.getenv("GEMINI_API_KEY")),
             instructions=[
                 f"Based on the prompt provided give an analysis of what all tools from {self.tool_kit} should the chatbot be equipped with and what concepts should it know.",
                 "The output should be of form [Tools = [the tools required], Concepts = [the concepts required]].",
@@ -35,7 +35,7 @@ class ChatbotAnalyzer:
         )
         
         self.PersonalityGenerator = Agent(
-            model=OpenAILike(id="llama3.1:405b",api_key=os.getenv("GALADRIAL_API_KEY"),base_url="https://api.galadriel.com/v1"),
+            model=Gemini(model='gemini-2.0-flash-exp', api_key=os.getenv("GEMINI_API_KEY")),
             instructions=[
                 "Based on the type of chatbot the user wants to make, generate a background and personality for the Chatbot to be created.",
                 "Keep the whole background and personality concise and in a single paragraph.",
@@ -44,7 +44,7 @@ class ChatbotAnalyzer:
         )
 
         self.InstructionGenerator = Agent(
-            model=OpenAILike(id="llama3.1:405b",api_key=os.getenv("GALADRIAL_API_KEY"),base_url="https://api.galadriel.com/v1"),
+            model=Gemini(model='gemini-2.0-flash-exp', api_key=os.getenv("GEMINI_API_KEY")),
             instructions=[
                 "Based on the type of chatbot the user wants to create, generate a concise set of instructions outlining the tasks and functionalities that the chatbot should perform.",
                 "The output should be structured as a para of actionable items, each describing a specific capability or task the chatbot is expected to handle.",
