@@ -1,12 +1,11 @@
 import './App.css'
+import { AuroraBackgroundDemo } from './components/custom/Background'
 
 function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
-        <h1 className="text-7xl font-bold text-green-500">blockchAIn</h1>
-      </div>
+    <AuroraBackgroundDemo />
     </>
   )
 }
