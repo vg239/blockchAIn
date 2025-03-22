@@ -2,6 +2,7 @@ import json
 import os
 from phi.agent import Agent, RunResponse
 from phi.model.openai import OpenAILike
+from phi.model.google import Gemini
 
 class ChatbotAnalyzer:
     """

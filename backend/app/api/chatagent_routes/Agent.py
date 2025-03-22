@@ -16,6 +16,7 @@ from phi.agent import Agent, RunResponse
 from cdp.errors import UnsupportedAssetError
 from .Creator import ChatbotAnalyzer
 from .schemas import *
+from phi.model.google import Gemini
 
 load_dotenv()
 
