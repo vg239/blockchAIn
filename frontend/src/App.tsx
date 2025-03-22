@@ -1,21 +1,27 @@
-import './App.css'
-  import Iridescence from './blocks/Backgrounds/Iridescence/Iridescence.tsx';
+"use client";
+
+import React from "react";
+import "./globals.css";
+import "./App.css";
+import { AuroraBackground } from "./components/ui/aurora-background";
+import { Navbar } from "./components/navbar";
+import { HeroSection } from "./components/hero-section";
+import { FeatureCards } from "./components/feature-cards";
+import { CTASection } from "./components/cta-section";
 
 function App() {
-
   return (
-    <>
-      <div className="flex justify-center items-center h-screen">
-        <h1 className="text-7xl font-bold text-green-500">blockchAIn</h1>
-        <Iridescence
-          color={[1, 1, 1]}
-          mouseReact={false}
-          amplitude={0.1}
-          speed={1.0}
-        />
+    <AuroraBackground>
+      <div className="min-h-screen w-full bg-zinc-950/30">
+        <Navbar />
+        <main className="pt-20">
+          <HeroSection />
+          <FeatureCards />
+          <CTASection />
+        </main>
       </div>
-    </>
-  )
+    </AuroraBackground>
+  );
 }
 
-export default App
+export default App;
