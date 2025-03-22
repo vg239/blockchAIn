@@ -1,8 +1,19 @@
 {
+  "name": "blockchAIn",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start:backend": "cd backend && python app.py",
+    "start:all": "concurrently \"npm run dev\" \"npm run start:backend\""
+  },
   "dependencies": {
     "@types/axios": "^0.9.36",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.5.0",
     "lucide-react": "^0.483.0",
+    "react-router-dom": "^7.4.0",
     "tailwind-merge": "^3.0.2"
   }
 }
