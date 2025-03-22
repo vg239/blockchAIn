@@ -1,0 +1,360 @@
+/* Import professional fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Landing container */
+.landing-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom typography */
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* "Bringing AI on Chain" black text */
+.bringing-text {
+  color: black;
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+/* Gradient text - for other elements where needed */
+.gradient-text {
+  background: linear-gradient(45deg, #60a5fa, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  animation: gradient 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Superpowers section */
+.superpowers-section {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.superpowers-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.superpowers-title {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.super-text {
+  color: white;
+  position: relative;
+}
+
+.powers-text {
+  color: #3b82f6;
+  position: relative;
+}
+
+/* Superpower cards */
+.superpower-card {
+  box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: relative;
+}
+
+.superpower-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: all 0.6s;
+  z-index: 1;
+}
+
+.superpower-card:hover {
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  transform: translateY(-10px);
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.superpower-card:hover::before {
+  left: 100%;
+}
+
+.superpower-card h3 {
+  color: black;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.superpower-card p {
+  color: black;
+}
+
+/* Enhanced Web2->Web3 Animation */
+.web2web3-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  height: 150px;
+  position: relative;
+}
+
+.web2-container, .web3-container {
+  position: relative;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+}
+
+.web2-text, .web3-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: black;
+  position: relative;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+  transition: all 0.5s ease;
+}
+
+.web2-text.active {
+  color: black;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.web3-text.active {
+  color: black;
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.arrow-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animated-arrow {
+  color: black;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  animation: pulse-arrow 2s infinite;
+}
+
+@keyframes pulse-arrow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animated background */
+.animated-gradient {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glass effect for cards */
+.glass-card {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animation for scroll-down icon */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+/* Enhanced Dock Styling - More transparent with black icons */
+.dock-nav {
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px;
+}
+
+.dock-nav:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Custom tooltip for dock icons */
+.dock-tooltip {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-weight: bold;
+}
+
+.dock-icon-wrapper:hover .dock-tooltip,
+.dock-icon-glow:hover .dock-tooltip {
+  opacity: 1;
+}
+
+/* Glow effect on hover for dock icons - Black glow for monochrome effect */
+.dock-icon-glow {
+  position: relative;
+}
+
+.dock-icon-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: -1;
+}
+
+.dock-icon-glow:hover::after {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
+}
+
+.dock-icon-glow:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Animation for text fading and appearing */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* Light themed superpowers section */
+.superpowers-section-light {
+  position: relative;
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.superpowers-section-light::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.superpowers-title-light {
+  position: relative;
+  margin-bottom: 2rem;
+  color: black;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.super-text-light {
+  color: black;
+  position: relative;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+.powers-text {
+  color: #000000;
+  position: relative;
+  text-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+}
