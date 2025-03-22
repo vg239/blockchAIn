@@ -4,3 +4,9 @@ venv
 user_data
 wallet_storage
 __pycache__
+conversations.json
+my_seed.json
+wallet_ids.txt
+authorisations.json
+map.json
+DB
