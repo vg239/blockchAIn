@@ -149,7 +149,9 @@ const interactWithAgent = async (nftHash: string, userId: string, prompt: string
     console.log("Prompt:", prompt);
     
     const response = await axios.post(`${API_URL}/agent-interact/${nftHash}/${userId}`, {
-      prompt
+      prompt,
+      nftHash,
+      userId
     });
     
     console.log("Interaction response:", response.data);

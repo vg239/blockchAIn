@@ -20,10 +20,6 @@ from phi.model.google import Gemini
 
 load_dotenv()
 
-API_KEY_NAME = os.environ.get("CDP_API_KEY_NAME")
-PRIVATE_KEY = os.environ.get("CDP_PRIVATE_KEY", "").replace('\\n', '\n')
-Cdp.configure(API_KEY_NAME, PRIVATE_KEY)
-
 class OnChainAgents:
     def __init__(self, Wallet_Id=None):
         """
