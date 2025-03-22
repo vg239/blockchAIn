@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import aigentService, { Agent } from "@/services/aigent";
+import { motion } from "framer-motion";
 
 interface AgentCreatorProps {
   userAccount: string;
@@ -71,15 +72,19 @@ export default function AgentCreator({ userAccount, onAgentCreated }: AgentCreat
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Create a New AI Agent</h2>
-      <p className="text-muted-foreground mb-6">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      <h2 className="text-2xl font-bold mb-4 text-black">Create a New AI Agent</h2>
+      <p className="text-gray-600 mb-6">
         Create a unique AI agent by providing a detailed prompt describing the personality and capabilities you want.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="agent-prompt" className="block mb-2 font-medium">
+          <label htmlFor="agent-prompt" className="block mb-2 font-medium text-black">
             Agent Prompt
           </label>
           <Textarea
@@ -89,15 +94,15 @@ export default function AgentCreator({ userAccount, onAgentCreated }: AgentCreat
             onChange={(e) => setPrompt(e.target.value)}
             rows={8}
             disabled={loading}
-            className="resize-none"
+            className="resize-none focus:ring-gray-500 focus:border-gray-500 border-gray-300"
           />
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-xs text-gray-500 mt-1">
             Be specific about knowledge areas, personality traits, and how the agent should interact
           </p>
         </div>
 
         {userAccount && (
-          <div className="p-3 rounded-md bg-slate-100 dark:bg-slate-800">
+          <div className="p-3 rounded-md bg-gray-100 border border-gray-200">
             <p className="text-sm">
               <span className="font-medium">Wallet Address:</span> {userAccount}
             </p>
@@ -105,19 +110,26 @@ export default function AgentCreator({ userAccount, onAgentCreated }: AgentCreat
               <span className="font-medium">NFT Hash Status:</span>{" "}
               <span className="text-xs">Automatically generated from your wallet address</span>
             </p>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-xs text-gray-500 mt-2">
               The NFT hash is securely generated from your wallet address for security and consistency
             </p>
           </div>
         )}
 
         {error && (
-          <div className="p-3 rounded-md bg-destructive/10 text-destructive border border-destructive">
+          <div className="p-3 rounded-md bg-gray-100 border border-gray-300 text-gray-800">
             {error}
           </div>
         )}
 
-        <Button type="submit" className="w-full" disabled={loading || !userAccount}>
+        <motion.button
+          type="submit"
+          className="w-full bg-black hover:bg-gray-800 text-white transition-colors p-3 rounded-md h-12 flex items-center justify-center"
+          disabled={loading || !userAccount}
+          whileHover={{ scale: 1.02, backgroundColor: "#333" }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2 }}
+        >
           {loading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -126,8 +138,8 @@ export default function AgentCreator({ userAccount, onAgentCreated }: AgentCreat
           ) : (
             "Create Agent"
           )}
-        </Button>
+        </motion.button>
       </form>
-    </div>
+    </motion.div>
   );
 }

@@ -106,13 +106,13 @@ export function AgentUI({ userAccount }: { userAccount: string | null }) {
 
   if (!account) {
     return (
-      <div className="min-h-screen relative">
+      <div className="min-h-screen bg-white relative">
         {/* Dock navigation */}
         <motion.div 
-          className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50"
+          className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <Dock className="dock-nav">
             <DockIcon onClick={() => navigate('/')} className="dock-icon-glow cursor-pointer">
@@ -140,12 +140,19 @@ export function AgentUI({ userAccount }: { userAccount: string | null }) {
           </Dock>
         </motion.div>
 
-        <div className="flex flex-col items-center justify-center h-screen p-6">
+        <div className="flex flex-col items-center justify-center h-screen p-6 pt-36">
           <h2 className="mb-4 text-xl font-semibold text-black">Connect Wallet to Use Agents</h2>
           <p className="text-black mb-8">Please connect your wallet to create and interact with AI agents.</p>
-          <Button onClick={connectWallet} disabled={connecting} className="px-8 py-6 text-black">
+          <motion.button 
+            onClick={connectWallet} 
+            disabled={connecting} 
+            className="px-8 py-6 bg-black text-white rounded-md h-12 flex items-center justify-center"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+          >
             {connecting ? "Connecting..." : "Connect Wallet"}
-          </Button>
+          </motion.button>
         </div>
       </div>
     );
@@ -155,13 +162,13 @@ export function AgentUI({ userAccount }: { userAccount: string | null }) {
   const selectedAgentData = getSelectedAgentData();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       {/* Dock navigation */}
       <motion.div 
-        className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50"
+        className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <Dock className="dock-nav">
           <DockIcon onClick={() => navigate('/')} className="dock-icon-glow cursor-pointer">
@@ -195,39 +202,45 @@ export function AgentUI({ userAccount }: { userAccount: string | null }) {
         </Dock>
       </motion.div>
 
-      <div className="flex flex-col md:flex-row gap-6 p-6 pt-24 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-6 p-6 pt-36 max-w-7xl mx-auto">
         {/* Sidebar with agent list and navigation */}
         <div className="w-full md:w-64 shrink-0">
           <h2 className="text-xl font-semibold mb-4 text-black">Your Agents</h2>
           
           <div className="flex md:flex-col gap-2 mb-6">
-            <Button
-              variant="ghost"
-              className={`justify-start w-full ${activeView === "create" ? "bg-primary/10" : ""}`}
+            <motion.button
+              className={`justify-start w-full px-3 py-2 rounded-md text-black ${activeView === "create" ? "bg-gray-100" : "bg-white border border-gray-200 hover:border-gray-300"}`}
               onClick={() => setActiveView("create")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <PlusCircle className="mr-2 h-4 w-4" />
-              <span className="text-black">Create Agent</span>
-            </Button>
+              <PlusCircle className="mr-2 h-4 w-4 inline" />
+              <span>Create Agent</span>
+            </motion.button>
             
-            <Button
-              variant="ghost"
-              className={`justify-start w-full ${activeView === "interact" ? "bg-primary/10" : ""}`}
+            <motion.button
+              className={`justify-start w-full px-3 py-2 rounded-md text-black ${activeView === "interact" ? "bg-gray-100" : "bg-white border border-gray-200 hover:border-gray-300"}`}
               onClick={() => setActiveView("interact")}
               disabled={!selectedAgent}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <Send className="mr-2 h-4 w-4" />
-              <span className="text-black">Interact</span>
-            </Button>
+              <Send className="mr-2 h-4 w-4 inline" />
+              <span>Interact</span>
+            </motion.button>
             
-            <Button
-              variant="ghost"
-              className={`justify-start w-full ${activeView === "history" ? "bg-primary/10" : ""}`}
+            <motion.button
+              className={`justify-start w-full px-3 py-2 rounded-md text-black ${activeView === "history" ? "bg-gray-100" : "bg-white border border-gray-200 hover:border-gray-300"}`}
               onClick={() => setActiveView("history")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <History className="mr-2 h-4 w-4" />
-              <span className="text-black">History</span>
-            </Button>
+              <History className="mr-2 h-4 w-4 inline" />
+              <span>History</span>
+            </motion.button>
           </div>
           
           <Separator className="my-4" />
@@ -241,7 +254,7 @@ export function AgentUI({ userAccount }: { userAccount: string | null }) {
         </div>
         
         {/* Main content area */}
-        <div className="flex-1 border rounded-lg shadow-sm p-6">
+        <div className="flex-1 border rounded-lg shadow-sm p-6 border-gray-200">
           {activeView === "create" && (
             <AgentCreator userAccount={account} onAgentCreated={handleAgentCreated} />
           )}
