@@ -2,7 +2,7 @@
 # BlockchAIn - Web3 AI Agent Platform
 
 <div align="center">
-  <img src="https://placeholder.com/512x256" alt="BlockchAIn Logo" width="512">
+  <img src="./blockchAIn.jpeg" alt="BlockchAIn Logo" width="512">
   <h3>Where Blockchain meets Artificial Intelligence</h3>
 </div>
 
@@ -35,7 +35,6 @@ The platform features a clean, minimalist interface designed for both beginners 
 - FastAPI (Python)
 - Web3.py for blockchain interactions
 - Language model integration
-- SQLAlchemy for data persistence
 - JSON for state management
 
 ## 📦 Installation
