@@ -1,0 +1,36 @@
+.
+├── backend
+│   ├── app
+│   ├── DB
+│   ├── user_data
+│   ├── wallet_storage
+│   ├── conversations.json
+│   ├── Dockerfile
+│   ├── map.json
+│   ├── my_seed.json
+│   ├── requirements.txt
+│   └── wallet_ids.txt
+├── contracts
+│   ├── abis
+│   ├── basic_agent.sol
+│   └── super_Agent.sol
+├── frontend
+│   ├── public
+│   ├── src
+│   ├── components.json
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── blockchAIn.jpeg
+├── directory_structure.txt
+├── docker-compose.yml
+├── package.json
+├── package-lock.json
+└── README.md
+
+11 directories, 23 files

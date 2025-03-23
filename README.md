@@ -167,10 +167,13 @@ VITE_ENABLE_MOCK_DATA=false
 
 #### Backend (.env)
 ```
-DEBUG=True
-SECRET_KEY=your_secret_key
-ALLOWED_ORIGINS=http://localhost:3000
-LLM_API_KEY=your_language_model_api_key
+GEMINI_API_KEY=your_gemini_api_key
+CDP_API_KEY=your_cdp_api_key
+CDP_PRIVATE_KEY=cdp_private_key
+WALLET_PRIVATE_KEY=wallet_private_key
+ALCHEMY_URL=alchemy_url
+WALLET_ADDRESS=wallet_address
+GOOGLE_API_KEY=your_gemini_api_key
 ```
 
 ## 🤝 Contributing
