@@ -296,15 +296,15 @@ export function LandingPage({ accountState = [null, () => {}] }: LandingPageProp
             />
             
             <FeatureCard
-              title="Personalized DeFi Assistants"
-              description="Create custom agents specialized in DeFi trading, NFT management, or cross-chain operations."
+              title="Personalized  Assistants"
+              description="Create custom agents specialized in multiple things like, NFT management, or cross-chain operations."
               icon={<Coins size={28} className="text-blue-400" />}
               delay={0.4}
             />
             
             <FeatureCard
-              title="Verifiable Actions"
-              description="All agent actions are recorded on-chain, providing transparent and verifiable proof of execution."
+              title="CDP Kit and More."
+              description="Agents can do all the function rovided by agent kit and more in a one stop solution on our app."
               icon={<Lock size={28} className="text-blue-400" />}
               delay={0.6}
             />
@@ -317,15 +317,15 @@ export function LandingPage({ accountState = [null, () => {}] }: LandingPageProp
             />
             
             <FeatureCard
-              title="Web3 Knowledge Base"
-              description="Agents retain and expand their knowledge about Web3 over time, learning from your interactions."
+              title="Custom zK-Snarks"
+              description="Agents can create custom zK-Snarks and compile them for your respective use case."
               icon={<Brain size={28} className="text-blue-400" />}
               delay={1.0}
             />
             
             <FeatureCard
-              title="Cross-chain Compatibility"
-              description="Work with multiple blockchain networks, enabling seamless cross-chain interactions."
+              title="Web2 -> Web3"
+              description="Bring your web2 app idea to web3 by bringing your agents on chain and getting suggestions from us."
               icon={<Coins size={28} className="text-blue-400" />}
               delay={1.2}
             />
