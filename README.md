@@ -51,7 +51,8 @@ The platform features a clean, minimalist interface designed for both beginners 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/blockchAIn.git
-cd blockchAIn
+
+cd blockchAIn/frontend
 
 # Install dependencies
 npm install
@@ -68,7 +69,9 @@ yarn dev
 
 ```bash
 # Navigate to backend directory
-cd backend
+git clone https://github.com/yourusername/blockchAIn.git
+
+cd blockchAIn/backend
 
 # Create a virtual environment
 python -m venv venv
